@@ -21,6 +21,7 @@ public class GroupController {
 
     @Autowired
     GroupUserService groupUserService;
+    int aa;
     public String createGroupPage(){
         return "";
     }
