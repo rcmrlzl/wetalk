@@ -1,0 +1,14 @@
+com/wetalk/dao/GroupUserMapper.class
+com/wetalk/service/UserService.class
+com/wetalk/WetalkApplication.class
+com/wetalk/dao/GroupMapper.class
+com/wetalk/service/GroupService.class
+com/wetalk/dao/UserMapper.class
+com/wetalk/service/GroupUserServiceImpl.class
+com/wetalk/pojo/User.class
+com/wetalk/controller/GroupController.class
+com/wetalk/pojo/GroupUser.class
+com/wetalk/service/UserServiceImpl.class
+com/wetalk/service/GroupServiceImpl.class
+com/wetalk/pojo/Group.class
+com/wetalk/service/GroupUserService.class

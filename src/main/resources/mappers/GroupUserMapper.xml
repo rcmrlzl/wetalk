@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mapper.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wetalk.dao.GroupUserMapper">
+    <insert id="addGroupManager" parameterType="int">
+        insert into wetalk.group_user(user_id,group_id,privilege) values (#{userId},#{@@IDENTITY},1);
+    </insert>
+    <insert id="addGroupUser" parameterType="int">
+        insert into wetalk.group_user(user_id,group_id) values (#{userId},#{groupId});
+    </insert>
+    <update id="updateGroupUserPrivilege">
+        update wetalk.group_user set `privilege` = #{privilege} where `user_id` = #{userId} and `group_id` = #{groupId};
+    </update>
+    <select id="queryGroupUserById" parameterType="int" resultType="com.wetalk.pojo.User">
+        select * from wetalk.group_user where user_id = #{userId} and group_id = #{groupId};
+    </select>
+    <select id="queryGroupUserByName" parameterType="String" resultType="com.wetalk.pojo.User">
+        select * from user inner join group_user gu
+            on gu.group_id = 1 and user.user_id = gu.user_id
+            where user_name like concat(concat('%',#{userName}),'%');
+    </select>
+    <delete id="deleteGroupUser">
+        delete from wetalk.group_user where `user_id` = #{userId} and `group_id` = #{groupId};
+    </delete>
+    <update id="autoInc">
+        ALTER TABLE wetalk.group_user AUTO_INCREMENT = 1;
+    </update>
+</mapper>

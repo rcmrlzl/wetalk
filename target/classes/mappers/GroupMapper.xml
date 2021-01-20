@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mapper.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wetalk.dao.GroupMapper">
+    <insert id="createGroup" parameterType="String">
+        insert into wetalk.group(`group_name`) values(#{groupName});
+    </insert>
+    <update id="updateGroupName">
+        update wetalk.group set `group_name` = #{groupName} where `group_id` = #{groupId};
+    </update>
+    <select id="queryGroupByName" parameterType="String" resultType="com.wetalk.pojo.Group">
+        select * from `group` where group_name like concat(concat('%',#{groupName}),'%');
+    </select>
+    <delete id="deleteGroup" parameterType="int">
+        delete from wetalk.group where `group_id` = #{groupId};   
+    </delete>
+    <update id="autoInc">
+        ALTER TABLE wetalk.group AUTO_INCREMENT = 1;
+    </update>
+</mapper>
