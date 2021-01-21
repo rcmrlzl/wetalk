@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 public class GroupController {
-        //asdad
+
         @Autowired
         GroupService groupService;
 
