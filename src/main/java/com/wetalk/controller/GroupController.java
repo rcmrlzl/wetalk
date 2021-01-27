@@ -4,7 +4,6 @@ import com.wetalk.pojo.Group;
 import com.wetalk.pojo.User;
 import com.wetalk.service.GroupService;
 import com.wetalk.service.GroupUserService;
-import com.wetalk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +20,7 @@ public class GroupController {
 
         @Autowired
         GroupUserService groupUserService;
-
+        int i;
         public String createGroupPage(){
             return "";
         }
