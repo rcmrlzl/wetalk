@@ -19,4 +19,7 @@
     <update id="autoInc">
         ALTER TABLE wetalk.group AUTO_INCREMENT = 1;
     </update>
+    <select id="getLastId" resultType="int">
+        SELECT LAST_INSERT_ID();
+    </select>
 </mapper>

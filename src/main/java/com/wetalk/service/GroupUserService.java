@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface GroupUserService {
     //添加群管理
-    int addGroupManager(int userId);
+    int addGroupManager(int userId,int groupId);
     //添加普通群用户
     int addGroupUser(int userId,int groupId);
 
@@ -25,4 +25,7 @@ public interface GroupUserService {
 
     //重置自增长
     int autoInc();
+
+    //获取自增id
+    int getLastId();
 }

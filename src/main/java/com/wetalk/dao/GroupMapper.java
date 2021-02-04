@@ -26,4 +26,7 @@ public interface GroupMapper {
 
     //重置自增长
     int autoInc();
+
+    //获取自增id
+    int getLastId();
 }

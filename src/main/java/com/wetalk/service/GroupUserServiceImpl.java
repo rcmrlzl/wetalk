@@ -14,8 +14,8 @@ public class GroupUserServiceImpl implements GroupUserService {
     GroupUserMapper groupUserMapper;
 
     @Override
-    public int addGroupManager(int userId) {
-        return groupUserMapper.addGroupManager(userId);
+    public int addGroupManager(int userId,int groupId) {
+        return groupUserMapper.addGroupManager(userId,groupId);
     }
 
     @Override
@@ -41,7 +41,14 @@ public class GroupUserServiceImpl implements GroupUserService {
 
     @Override
     public int deleteGroupUser(int userId,int groupId) {
-        return groupUserMapper.deleteGroupUser(userId,groupId);
+        int i = groupUserMapper.deleteGroupUser(userId,groupId);
+        autoInc();
+        return i;
+    }
+
+    @Override
+    public int getLastId() {
+        return groupUserMapper.getLastId();
     }
 
     @Override

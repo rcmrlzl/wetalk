@@ -5,7 +5,7 @@
 
 <mapper namespace="com.wetalk.dao.GroupUserMapper">
     <insert id="addGroupManager" parameterType="int">
-        insert into wetalk.group_user(user_id,group_id,privilege) values (#{userId},#{@@IDENTITY},1);
+        insert into wetalk.group_user(user_id,group_id,privilege) values (#{userId},#{groupId},1);
     </insert>
     <insert id="addGroupUser" parameterType="int">
         insert into wetalk.group_user(user_id,group_id) values (#{userId},#{groupId});
@@ -27,4 +27,7 @@
     <update id="autoInc">
         ALTER TABLE wetalk.group_user AUTO_INCREMENT = 1;
     </update>
+    <select id="getLastId" resultType="int">
+        SELECT LAST_INSERT_ID();
+    </select>
 </mapper>

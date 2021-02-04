@@ -1,11 +1,9 @@
 package com.wetalk.service;
 
 import com.wetalk.dao.GroupMapper;
-import com.wetalk.dao.GroupUserMapper;
 import com.wetalk.pojo.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.*;
 
@@ -16,6 +14,7 @@ public class GroupServiceImpl implements GroupService{
 
     @Override
     public int createGroup(String groupName, int userId) {
+
         return groupMapper.createGroup(groupName,userId);
     }
 
@@ -36,7 +35,14 @@ public class GroupServiceImpl implements GroupService{
 
     @Override
     public int deleteGroup(int groupId) {
-        return groupMapper.deleteGroup(groupId);
+        int i = groupMapper.deleteGroup(groupId);
+        autoInc();
+        return i;
+    }
+
+    @Override
+    public int getLastId() {
+       return groupMapper.getLastId();
     }
 
     @Override

@@ -29,12 +29,13 @@ public class GroupController {
         @RequestMapping("/createGroup/{groupName}/{userId}")
         @ResponseBody
         public int createGroup(@PathVariable("groupName") String name ,@PathVariable("userId")int uid){
-            if (groupService.createGroup(name,uid)==1 && groupUserService.addGroupManager(uid)==1){
-                return 1;
+            if (groupService.createGroup(name,uid)==1){
+                int groupId = groupService.getLastId();
+                if (groupUserService.addGroupManager(uid,groupId)==1){
+                    return 1;
+                }
             }
-            else{
-                return 0;
-            }
+            return 0;
         }
 
         //邀请用户
