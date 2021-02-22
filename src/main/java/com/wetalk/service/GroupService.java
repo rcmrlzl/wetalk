@@ -18,6 +18,9 @@ public interface GroupService {
     //根据名ID查询群组
     Group queryGroupById(String groupId);
 
+    //读取群消息
+    String getMessage(int groupId);
+
     //删除群组
     int deleteGroup(int groupId);
 

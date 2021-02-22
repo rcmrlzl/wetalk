@@ -13,6 +13,12 @@ spring:
       content-type: text/html
     mode: HTML
     prefix: classpath:/templates/
+  redis:
+    host: 34.92.92.209
+    port: 6379
+    database: 1
+    timeout: 5000
+    password: 147852369aaa
 
 mybatis:
   configuration:

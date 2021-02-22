@@ -11,7 +11,7 @@
         update wetalk.group set `group_name` = #{groupName} where `group_id` = #{groupId};
     </update>
     <select id="queryGroupByName" parameterType="String" resultType="com.wetalk.pojo.Group">
-        select * from `group` where group_name like concat(concat('%',#{groupName}),'%');
+        select * from `group` where group_name like concat(concat('%',#{groupName}),'%') or group_id = #{groupName};
     </select>
     <delete id="deleteGroup" parameterType="int">
         delete from wetalk.group where `group_id` = #{groupId};   

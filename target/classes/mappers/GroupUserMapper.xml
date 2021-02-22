@@ -16,6 +16,9 @@
     <select id="queryGroupUserById" parameterType="int" resultType="com.wetalk.pojo.User">
         select * from wetalk.group_user where user_id = #{userId} and group_id = #{groupId};
     </select>
+    <select id="queryGroupUserNameById" parameterType="int" resultType="String">
+        select user_name from wetalk.user where user_id = #{userId};
+    </select>
     <select id="queryGroupUserByName" parameterType="String" resultType="com.wetalk.pojo.User">
         select * from user inner join group_user gu
             on gu.group_id = 1 and user.user_id = gu.user_id
@@ -29,5 +32,14 @@
     </update>
     <select id="getLastId" resultType="int">
         SELECT LAST_INSERT_ID();
+    </select>
+    <select id="queryProject" parameterType="int" resultType="com.wetalk.pojo.Group">
+        select * from `group` g where g.group_id in (select group_id from group_user gu where user_id = #{userId});
+    </select>
+    <select id="queryGroupUser" parameterType="int" resultType="com.wetalk.pojo.User">
+        select * from `user` where user_id in (select user_id from group_user where group_id = #{groupId});
+    </select>
+    <select id="queryPrivilege" resultType="int">
+        select privilege from group_user where user_id = #{userId} and group_id = #{groupId};
     </select>
 </mapper>

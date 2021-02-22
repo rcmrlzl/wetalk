@@ -1,5 +1,6 @@
 package com.wetalk.dao;
 
+import com.wetalk.pojo.Group;
 import com.wetalk.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -20,8 +21,17 @@ public interface GroupUserMapper {
     List<User> queryGroupUserByName(String userName);
     //根据用户id查询群用户
     User queryGroupUserById(int userId,int groupId);
+    //根据用户id查询群用户名
+    String queryGroupUserNameById(int userId);
     //删除群用户
     int deleteGroupUser(int userId,int groupId);
+
+    //查询项目
+    List<Group> queryProject(int userId);
+    //查询群内所有用户
+    List<User> queryGroupUser(int groupId);
+    //权限查询
+    int queryPrivilege(int userId,int groupId);
 
     //重置自增长
     int autoInc();

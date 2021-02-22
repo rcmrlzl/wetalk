@@ -32,7 +32,7 @@ public class GroupController {
             if (groupService.createGroup(name,uid)==1){
                 int groupId = groupService.getLastId();
                 if (groupUserService.addGroupManager(uid,groupId)==1){
-                    return 1;
+                    return groupId;
                 }
             }
             return 0;
@@ -73,7 +73,7 @@ public class GroupController {
         }
 
         //根据群名查询群组
-        @RequestMapping("/queryGroupByName/{groupName}")
+        @RequestMapping("/queryGroupByNameId/{groupName}")
         @ResponseBody
         public List<Group> queryGroupByName(@PathVariable("groupName") String name){
             System.out.println(groupService.queryGroupByName(name).toString());
@@ -85,6 +85,34 @@ public class GroupController {
         @ResponseBody
         public List<User> queryGroupUserByName(@PathVariable("userName") String name){
             return groupUserService.queryGroupUserByName(name);
+        }
+
+        //查询项目
+        @RequestMapping("/queryProject/{userId}")
+        @ResponseBody
+        public List<Group> queryProject(@PathVariable("userId") int uid){
+            return groupUserService.queryProject(uid);
+        }
+
+        //查询群内所有用户
+        @RequestMapping("/queryGroupUser/{groupId}")
+        @ResponseBody
+        public List<User> queryGroupUser(@PathVariable("groupId") int gid){
+            return groupUserService.queryGroupUser(gid);
+        }
+
+        //查询权限
+        @RequestMapping("/queryPrivilege/{userId}/{groupId}")
+        @ResponseBody
+        public int queryPrivilege(@PathVariable("userId") int uid,@PathVariable("groupId") int gid){
+            return groupUserService.queryPrivilege(uid,gid);
+        }
+
+        //读取群消息
+        @RequestMapping("/getMessage/{groupId}")
+        @ResponseBody
+        public String getMessage(@PathVariable("groupId") int gid){
+            return groupService.getMessage(gid);
         }
 
         //解散群组

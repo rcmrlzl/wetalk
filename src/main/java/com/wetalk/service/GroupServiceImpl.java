@@ -3,6 +3,7 @@ package com.wetalk.service;
 import com.wetalk.dao.GroupMapper;
 import com.wetalk.pojo.Group;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -11,6 +12,9 @@ import java.util.*;
 public class GroupServiceImpl implements GroupService{
     @Autowired
     GroupMapper groupMapper;
+
+    @Autowired
+    StringRedisTemplate redisTemplate;
 
     @Override
     public int createGroup(String groupName, int userId) {
@@ -31,6 +35,11 @@ public class GroupServiceImpl implements GroupService{
     @Override
     public Group queryGroupById(String groupId) {
         return groupMapper.queryGroupById(groupId);
+    }
+
+    @Override
+    public String getMessage(int groupId) {
+        return redisTemplate.opsForValue().get(groupId+"");
     }
 
     @Override
