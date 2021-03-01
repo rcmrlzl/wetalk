@@ -4,10 +4,8 @@ import com.wetalk.dao.GroupMapper;
 import com.wetalk.dao.GroupUserMapper;
 import com.wetalk.service.GroupService;
 import com.wetalk.service.GroupUserService;
-import com.wetalk.service.GroupUserServiceImpl;
 import com.wetalk.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,7 +44,7 @@ public class WebSocketServer {
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-    private String ms;
+    private String ms="";
     //@Autowired
     //RedisTemplate<String, String> redisTemplate;
 
@@ -74,6 +72,7 @@ public class WebSocketServer {
         this.groupId = Integer.parseInt(param[0]);
         this.userId = Integer.parseInt(param[1]);
         this.userName = webSocketServer.groupUserService.queryGroupUserNameById(userId);
+        System.out.println("webSocketServer.groupService.getMessage: " + webSocketServer.groupService.getMessage(groupId));
         this.ms = webSocketServer.groupService.getMessage(groupId);
         CopyOnWriteArraySet<WebSocketServer> users = map.get(groupId);
         if (users == null){
@@ -103,7 +102,9 @@ public class WebSocketServer {
     @OnMessage
     public void getMessage(String message){
         CopyOnWriteArraySet<WebSocketServer> users = map.get(groupId);
+        System.out.println("ms");
         System.out.println(ms);
+        System.out.println("ms");
         ms += message+"\n";
         webSocketServer.redisTemplate.opsForValue().set(groupId.toString(),ms);
         for (WebSocketServer user : users){

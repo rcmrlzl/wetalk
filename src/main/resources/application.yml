@@ -7,6 +7,11 @@ spring:
     username: root
     password: msdn
     driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      max-lifetime: 120000
+      idle-timeout: 60000
+      connection-timeout: 60000
+      maximum-pool-size: 20
   thymeleaf:
     cache: false
     servlet:

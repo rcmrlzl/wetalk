@@ -112,7 +112,13 @@ public class GroupController {
         @RequestMapping("/getMessage/{groupId}")
         @ResponseBody
         public String getMessage(@PathVariable("groupId") int gid){
-            return groupService.getMessage(gid);
+            String ms;
+            if (groupService.getMessage(gid)==null){
+                ms="";
+            }else{
+                ms = groupService.getMessage(gid);
+            }
+            return ms;
         }
 
         //解散群组

@@ -39,7 +39,13 @@ public class GroupServiceImpl implements GroupService{
 
     @Override
     public String getMessage(int groupId) {
-        return redisTemplate.opsForValue().get(groupId+"");
+        String ms = "";
+        if (redisTemplate.opsForValue().get(groupId+"") == null){
+            ms = "";
+        }else{
+            ms = redisTemplate.opsForValue().get(groupId+"");
+        }
+        return ms;
     }
 
     @Override
